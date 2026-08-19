@@ -56,21 +56,75 @@ Create a structuring element (kernel) of suitable size.
 Compare the original, eroded, and dilated images.
 
 ## Program
+Step 1:Import the required libraries: OpenCV, NumPy, and Matplotlib.
+```
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+```
+Step 2: Create a blank image
+```
+image = np.zeros((300, 600), dtype=np.uint8)
+```
+Step 3: Insert text onto the image
+```
+cv2.putText(image, 'OpenCV', (50, 180), cv2.FONT_HERSHEY_SIMPLEX,
+            4, 255, 8, cv2.LINE_AA)
+```
+Step 5: Create a structuring element (kernel)
+```
+kernel = np.ones((5, 5), np.uint8)
+```
+Step 6: Image Erosion
+```
+eroded = cv2.erode(image, kernel, iterations=1)
+```
+Step 7: Image Dilation
+```
+dilated = cv2.dilate(image, kernel, iterations=1)
+```
+Step 4 & 8: Display and compare original, eroded, dilated images
+```
+titles = ['Original Image', 'Eroded Image', 'Dilated Image']
+images = [image, eroded, dilated]
 
+plt.figure(figsize=(15, 5))
+for i in range(3):
+    plt.subplot(1, 3, i + 1)
+    plt.imshow(images[i], cmap='gray')
+    plt.title(titles[i])
+    plt.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
 ## Developed By
 
-**Name:** ____________________________
-
-**Register No:** ______________________
+**Name:Lohith V** 
+**Register No:212225230154**
 
 ## Output
 
 ### Original Image
 
+
+
+![alt text](<Screenshot 2026-08-19 180300.png>)
+
+
+
+
 - A text image containing characters is displayed.
 - The image serves as the input for morphological processing.
 
 ### Erosion
+
+
+
+![alt text](<Screenshot 2026-08-19 180317.png>)
+
+
+
 
 - Original image is displayed.
 - Eroded image is displayed.
@@ -78,6 +132,13 @@ Compare the original, eroded, and dilated images.
 - Object boundaries shrink inward.
 
 ### Dilation
+
+
+
+![alt text](<Screenshot 2026-08-19 180331.png>)
+
+
+
 
 - Original image is displayed.
 - Dilated image is displayed.
